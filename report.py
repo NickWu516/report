@@ -14,7 +14,7 @@ symbols_price_unit=st.sidebar.selectbox('轉換後',currency_list)
 @st.cache
 def load_data():
     url=''.join(['https://rate.bot.com.tw/xrt?Lang=zh-TW',base_price_unit,'&symbols=',symbols_price_unit]
-    response=requests.get(url)
+    response = requests.get(url)
     data=response.json()
     base_currency=pd.DataFrame.from_dict(data['rates'].items())
     rates_df.columns=['converted_currency','price']
