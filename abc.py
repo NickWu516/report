@@ -1,4 +1,3 @@
-!pip install -U quandl numpy pandas matplotlib pystan pytrends plotly yfinance
 import streamlit as st
 from datetime import date
 
