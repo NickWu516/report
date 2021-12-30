@@ -1,3 +1,4 @@
+!pip install -U quandl numpy pandas matplotlib pystan pytrends plotly yfinance
 import streamlit as st
 from datetime import date
 
@@ -28,7 +29,7 @@ data_load_state=st.text('數據載入中...')
 data=load_data(selected_stock)
 data_load_state.text('數據載入完畢')
 
-st:subheader('原始數據')
+st.subheader('原始數據')
 st.write(data.tail())
 
 def plot_raw_data():
@@ -47,7 +48,7 @@ m.fit(df_train)
 future=m.male_future_dataframe(periods=period)
 forecast=m.predict(future)
 
-st:subheader('預測數據')
+st.subheader('預測數據')
 st.write(forecast.tail())
 
 st.write('預測數據')
