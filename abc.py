@@ -1,4 +1,3 @@
-python -m pip install --upgrade pip
 import streamlit as st
 from datetime import date
 
