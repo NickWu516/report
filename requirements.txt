@@ -1,3 +1,4 @@
 yfinance
 pystan
 fbprophet
+python -m pip install --upgrade pip
