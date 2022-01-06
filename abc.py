@@ -9,12 +9,12 @@ from plotly import graph_objs as go
 START = "2015-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
-st.title('股票預測')
+st.title('Stock Forecast App')
 
 stocks = ('GOOG', 'AAPL', 'MSFT', 'GME')
-selected_stock = st.selectbox('選擇股票', stocks)
+selected_stock = st.selectbox('Select dataset for prediction', stocks)
 
-n_years = st.slider('年預測:', 1, 4)
+n_years = st.slider('Years of prediction:', 1, 4)
 period = n_years * 365
 
 
@@ -25,9 +25,9 @@ def load_data(ticker):
     return data
 
 	
-data_load_state = st.text('數據載入中...')
+data_load_state = st.text('Loading data...')
 data = load_data(selected_stock)
-data_load_state.text(載入完成!')
+data_load_state.text('Loading data... done!')
 
 st.subheader('Raw data')
 st.write(data.tail())
@@ -35,16 +35,16 @@ st.write(data.tail())
 # Plot raw data
 def plot_raw_data():
 	fig = go.Figure()
-	fig.add_trace(go.Scatter(x=data['日期'], y=data['開盤價'], name="stock_open"))
-	fig.add_trace(go.Scatter(x=data['日期'], y=data['收盤價'], name="stock_close"))
-	fig.layout.update(title_text='時間序列資料', xaxis_rangeslider_visible=True)
+	fig.add_trace(go.Scatter(x=data['Date'], y=data['Open'], name="stock_open"))
+	fig.add_trace(go.Scatter(x=data['Date'], y=data['Close'], name="stock_close"))
+	fig.layout.update(title_text='Time Series data with Rangeslider', xaxis_rangeslider_visible=True)
 	st.plotly_chart(fig)
 	
 plot_raw_data()
 
 # Predict forecast with Prophet.
-df_train = data[['日期','收盤價']]
-df_train = df_train.rename(columns={"日期": "ds", "收盤價": "y"})
+df_train = data[['Date','Close']]
+df_train = df_train.rename(columns={"Date": "ds", "Close": "y"})
 
 m = Prophet()
 m.fit(df_train)
