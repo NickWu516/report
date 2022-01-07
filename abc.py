@@ -10,8 +10,8 @@ START = "2015-01-01"
 TODAY = date.today().strftime("%Y-%m-%d")
 
 st.title('Stock Forecast App')
-
-stocks = ('GOOG', 'AAPL', 'MSFT', 'GME','0056.tw')
+#2412:中華電 2330:台積電 1216:統一 2357"華碩
+stocks = ('GOOG', 'AAPL', 'MSFT', 'TSLA','0056.TW','2412.TW','2330.TW','1216.TW','2357.TW')
 selected_stock = st.selectbox('Select dataset for prediction', stocks)
 
 n_years = st.slider('Years of prediction:', 1, 4)
